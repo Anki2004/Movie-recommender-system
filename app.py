@@ -3,11 +3,11 @@ import streamlit as st
 import pickle as pk
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
-movies_dic = pk.load(open('movies_dict.pkl','rb'))
+movies_dic = pk.load(open('pickleFiles/movies_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dic)
 similarity = cosine_similarity
-tfidf_metrics = pk.load(open('tfidf_metrics.pkl','rb'))
-vectorizer = pk.load(open('vectorizer.pkl','rb'))
+tfidf_metrics = pk.load(open('pickleFiles/tfidf_metrics.pkl', 'rb'))
+vectorizer = pk.load(open('pickleFiles/vectorizer.pkl', 'rb'))
 def recommend_movies(input_text, user_rating, num_recommendations=5):
     input_vector = vectorizer.transform([input_text])
     similarities = similarity(input_vector, tfidf_metrics)
